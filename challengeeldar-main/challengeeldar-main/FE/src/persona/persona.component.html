@@ -1,0 +1,35 @@
+<div class="example-container">
+    <h2>Personas a invitar</h2>
+  
+    <div
+      cdkDropList
+      #personasList="cdkDropList"
+      [cdkDropListData]="personas"
+      [cdkDropListConnectedTo]="[invitadosList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of personas; track item) {
+        <div class="example-box" id="{{item}}" cdkDrag style="cursor: grab;">{{item}}<a (click)="borrarPersona(item)" style="cursor: pointer;">-</a></div>
+      }
+    </div>
+    <button (click)="nuevaPersona()">Nueva persona</button>
+</div>
+
+  
+  <div class="example-container">
+    <h2>Invitados</h2>
+  
+    <div
+      cdkDropList
+      #invitadosList="cdkDropList"
+      [cdkDropListData]="invitados"
+      [cdkDropListConnectedTo]="[personasList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of invitados; track item) {
+        <div class="example-box" cdkDrag>{{item}}</div>
+      }
+    </div>
+    <button (click)="enviar()">Enviar</button>
+  </div>
+  
